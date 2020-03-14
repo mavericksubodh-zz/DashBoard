@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://whdq9733:8080/util/logSearchMap/?environment='
+  baseUrl: 'http://whdq9733:8080/util/logSearchLists/?environment='
 };
 
 /*

@@ -100,16 +100,15 @@ export class SearchComponent implements OnInit {
   }
 
 // Using this function in html
-  async fnCallSearchService(env, searchString) {
+  async fnCallSearchService(env, cluster, searchString) {
     console.warn(this.searchForm.value);
     console.warn(this.searchForm.get('environment').value + '-env ' + this.searchForm.get('credentials.userId').value);
     console.log('calling fnSendGetRequest.');
     env = this.searchForm.get('environment').value;
     searchString = this.searchForm.get('grepString').value;
+    cluster = this.searchForm.get('instance').value;
     this.searchService.fnSendGetRequest(
-      env,
-      searchString
-        ).subscribe(
+      env, cluster, searchString).subscribe(
         data => {
           this.searchResults = data;
           console.log('from stringify ' + JSON.parse(JSON.stringify(data)));
