@@ -1,109 +1,203 @@
-<div class=" container-fluid row">
-  <div class="row col-xl-4"></div>
-  <div class="row col-xl-8">
-    <!-- 
-            Use Buttons for environment
-            upon selection, show options for search : like line number, most recent etc
-            provide textarea for the grep command  
-            accept user name and password
-            provide submit button 
-        -->
-    <!-- <div class="col-xl-3 col-lg-8 form-group"> </div> -->
-    <div class="col-xl-3 col-lg-8 form-group">
-      <button type="button" class="btn btn-success" (click)="showGrepOptions()">
-        QA
-      </button>
-    </div>
-    <div class="col-xl-3 col-lg-8">
-      <button type="button" class="btn btn-warning" (click)="showGrepOptions()">
-        Training
-      </button>
-    </div>
-    <div class="col-xl-3 col-lg-8">
-      <button type="button" class="btn btn-danger" (click)="showGrepOptions()">
-        Prod
-      </button>
-    </div>
-
-    <input type="hidden" #selection />
-
-    <div class="card-container form-group" *ngIf="showSearchOptions == true">
-      <p style="font-size: small;font-weight: bold; ">Return search result with</p>
-      <div
-        class="card card-small btn-info"
-        (click)="selection.value = 'n'"
-        tabindex="0"
-        (click)="showUserId()"
-      >
-        <span>line number</span>
-      </div>
-
-      <div
-        class="card card-small btn-info"
-        (click)="selection.value = 'w'"
-        tabindex="0"
-        (click)="showUserId()"
-      >
-        <span>whole word</span>
-      </div>
-
-      <div
-        class="card card-small btn-info"
-        (click)="selection.value = 'r'"
-        tabindex="0"
-        (click)="showUserId()"
-      >
-        <span>most recent</span>
-      </div>
-      <!--Custom search option commented-->
-      <!-- <div class="card card-small btn-info" (click)="selection.value = 'r'" tabindex="0"
-                (click)="showCustomSearch()">
-                <span>custom</span>
-            </div> -->
-    </div>
-    <input type="hidden" #selection />
-    <!--Custom search input text area -->
-    <div class="col-xl-3 col-lg-8" *ngIf="showCustom == true">
-      <div class="row">
-        <div class="col-md-4 ">
-          <p class="text-right">grep</p>
-        </div>
-        <div class="col-md-4">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="grep options go here..(eg. -n, -E, -W) "
-          />
-        </div>
-      </div>
-    </div>
-
-    <input type="hidden" #selection />
-
+<form [formGroup]="searchForm" >
+  <div class=" container-fluid ">
     <div class="row col-xl-12">
-      <div class="col-xl-6 " *ngIf="showUsrId == true">
-        <input type="text" id="userid" placeholder="Enter your UserId" required />
-      </div>
-      <div
-        class="col-xl-6"
-        *ngIf="showPwd == true"
-        (click)="showSearchButtonFn()"
-      >
-        <input type="password" id="password" placeholder="Enter your Password" required />
-      </div>
+      <div class="row col-xl-4"></div>
+      <div class="row col-xl-8">
+        <!-- 
+              Use Buttons for environment
+              upon selection, show options for search : like line number, most recent etc
+              provide textarea for the grep command  
+              accept user name and password
+              provide submit button 
+          -->
+        <div class="col-xs-3"></div>
+        <div class="col-xs-3 col-md-3 ">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="fnShowGrepOptions('QA')"
+          >
+            QA
+          </button>
+        </div>
+        <div class="col-xs-3 col-md-3">
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="fnShowGrepOptions('TRAINING')"
+          >
+            Training
+          </button>
+        </div>
+        <div class="col-xs-3 col-md-3">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="fnShowGrepOptions('PROD')"
+          >
+            Prod
+          </button>
+        </div>
+
+        <input type="hidden" #selection />
+        <!-- this.showInstanceOptions activates below div -->
+        <div
+          class="card-container form-group row"
+          *ngIf="this.showInstanceOptions == true"
+        >
+          <!-- <p style="font-size: small; ">Choose instance for quick search</p> -->
+          <div
+            class="card card-small btn-info "
+            tabindex="0"
+            (click)="fnShowStringTextArea('UI')"
+          >
+            <span>UI</span>
+          </div>
+
+          <div
+            class="card card-small btn-info"
+            tabindex="0"
+            (click)="fnShowStringTextArea('SVC')"
+          >
+            <span>Service</span>
+          </div>
+
+          <div
+            class="card card-small btn-info"
+            tabindex="0"
+            (click)="fnShowStringTextArea('INT')"
+          >
+            <span>Integration</span>
+          </div>
+          <!--Custom search option commented-->
+          <!-- <div class="card card-small btn-info" (click)="selection.value = 'r'" tabindex="0"
+                  (click)="showCustomSearch()">
+                  <span>custom</span>
+              </div> -->
+        </div>
+
+        <input type="hidden" #selection />
+        <!-- this.showGrepOptions activates below div, deactivated for now-->
+        <div
+          class="card-container form-group row"
+          *ngIf="showGrepOptions == true"
+        >
+          <p style="font-size: small;font-weight: bold; ">Search options</p>
+          <div
+            class="card card-small btn-info "
+            tabindex="0"
+            (click)="fnShowStringTextArea('-n')"
+          >
+            <span>line number</span>
+          </div>
+
+          <div
+            class="card card-small btn-info"
+            tabindex="0"
+            (click)="fnShowStringTextArea('-w')"
+          >
+            <span>whole word</span>
+          </div>
+
+          <div
+            class="card card-small btn-info"
+            tabindex="0"
+            (click)="fnShowStringTextArea('r')"
+          >
+            <span>most recent</span>
+          </div>
+          <!--Custom search option commented-->
+          <!-- <div class="card card-small btn-info" (click)="selection.value = 'r'" tabindex="0"
+                  (click)="showCustomSearch()">
+                  <span>custom</span>
+              </div> -->
+        </div>
+        <input type="hidden" #selection />
+        <!--Custom search input text area ; will not appear on UI until custom above is activated-->
+        <div class="col-xl-3 col-md-8" *ngIf="showCustom == true">
+          <div class="row">
+            <div class="col-md-4 ">
+              <p class="text-right">grep</p>
+            </div>
+            <div class="col-md-4">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="grep options go here..(eg. -n, -E, -W) "
+              />
+            </div>
+          </div>
+        </div>
+<!-- div for search string -->
+        <div class="row col-xl-12 ">
+          <div
+            class="col-xl-10 "
+            *ngIf="showStringTextArea == true"
+            (keyup)="fnShowUserId()"
+            (paste)="fnShowUserId()"
+          >
+            <input
+              class="form-control input-sm"
+              type="text"
+              id="grepString"
+              placeholder="Enter string to be searched"
+              formControlName="grepString"
+              required
+            />
+          </div>
+        </div>
+
+        <input type="hidden" #selection />
+
+        <div class="row col-xl-12 mt-4 form-group" formGroupName="credentials">
+          <div class="col-xl-5 " *ngIf="showUsrId == true">
+            <input
+              class="form-control"
+              type="text"
+              id="userId"
+              placeholder="Enter your UserId for unix login"
+              formControlName="userId"
+              required
+            />
+          </div>
+          <div
+            class="col-xl-5"
+            *ngIf="showPwd == true"
+            (click)="fnShowSearchButton()"
+            (keyup)="fnShowSearchButton()"
+            
+          >
+            <input
+              class="form-control"
+              type="password"
+              id="password"
+              placeholder="Enter your Password"
+              formControlName="password"
+              required
+            />
+          </div>
+        </div>
+
+        <input type="hidden" #selection />
+
+        <div class="row col-xl-10 mt-4 ">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm btn-block"
+            *ngIf="showSearchButton == true"
+            (click)="fnCallSearchService()"
+          >
+            Search
+          </button>
+        </div>
+
+        <div class="row col-xl-10 mt-4 " *ngIf="showSearchResults == true">
+          <div class="col-xl-10">
+            {{ searchResultMap }}
+            {{ searchResults }}
+          </div>
+        </div>
+      </div><!-- div row ends here-->
     </div>
-
-    <input type="hidden" #selection />
-
-    <div class="row col-xl-10 mt-4 ">
-      <button
-        type="button"
-        class="btn btn-primary btn-sm btn-block"
-        *ngIf="showSearchButton == true"
-      >
-        Search
-      </button>
-    </div>
-
   </div>
-</div>
+</form>
