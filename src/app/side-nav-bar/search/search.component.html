@@ -48,44 +48,44 @@
             </button>
           </div>
         </div>
- 
+        <br />
         <input type="hidden" #selection />
         <!-- this.showInstanceOptions activates below div -->
-        <div
-          class="card-container row"
-          *ngIf="this.showInstanceOptions == true"
-        >
-          <p style="font-size: small; "></p>
-          <div
-            class="card card-small btn-info "
-            tabindex="0"
-            (click)="fnShowStringTextArea('')"
-          >
-            <span>All</span>
-          </div>
-          <div
-            class="card card-small btn-info "
-            tabindex="0"
-            (click)="fnShowStringTextArea('UI')"
-          >
-            <span>UI</span>
+        <div class="row col-xl-12" *ngIf="this.showInstanceOptions == true">
+          <div class="row col-xl-1"></div>
+          <div class="row col-xl-11">
+            <div
+              class="card card-small btn-info "
+              tabindex="0"
+              (click)="fnShowStringTextArea('')"
+            >
+              <span>All</span>
+            </div>
+            <div
+              class="card card-small btn-info "
+              tabindex="0"
+              (click)="fnShowStringTextArea('UI')"
+            >
+              <span>UI</span>
+            </div>
+
+            <div
+              class="card card-small btn-info"
+              tabindex="0"
+              (click)="fnShowStringTextArea('SVC')"
+            >
+              <span>Service</span>
+            </div>
+
+            <div
+              class="card card-small btn-info"
+              tabindex="0"
+              (click)="fnShowStringTextArea('INT')"
+            >
+              <span>Integration</span>
+            </div>
           </div>
 
-          <div
-            class="card card-small btn-info"
-            tabindex="0"
-            (click)="fnShowStringTextArea('SVC')"
-          >
-            <span>Service</span>
-          </div>
-
-          <div
-            class="card card-small btn-info"
-            tabindex="0"
-            (click)="fnShowStringTextArea('INT')"
-          >
-            <span>Integration</span>
-          </div>
           <!--Custom search option commented-->
           <!-- <div class="card card-small btn-info" (click)="selection.value = 'r'" tabindex="0"
                   (click)="showCustomSearch()">
@@ -95,10 +95,7 @@
 
         <input type="hidden" #selection />
         <!-- this.showGrepOptions activates below div, deactivated for now-->
-        <div
-          class="card-container form-group row"
-          *ngIf="showGrepOptions == true"
-        >
+        <div class=" form-group row" *ngIf="showGrepOptions == true">
           <p style="font-size: small;font-weight: bold; ">Search options</p>
           <div
             class="card card-small btn-info "
