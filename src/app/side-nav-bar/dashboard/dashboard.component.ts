@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   public alerts: Array<any> = [];
-  constructor() { 
+  constructor() {
     this.alerts.push(
       {
           id: 1,

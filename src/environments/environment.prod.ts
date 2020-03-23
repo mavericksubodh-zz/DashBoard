@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://urocCS.ual.com:20201/util/logSearchLists/?environment='
+  baseUrl: 'http://bndcdfrqwas01.ual.com:20201/util/logSearchLists/?environment='
 };

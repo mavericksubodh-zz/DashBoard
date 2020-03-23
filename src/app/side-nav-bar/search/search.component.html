@@ -1,4 +1,4 @@
-<form [formGroup]="searchForm" >
+<form [formGroup]="searchForm">
   <div class=" container-fluid ">
     <div class="row col-xl-12">
       <div class="row col-xl-4"></div>
@@ -10,42 +10,59 @@
               accept user name and password
               provide submit button 
           -->
-        <div class="col-xs-3"></div>
-        <div class="col-xs-3 col-md-3 ">
-          <button
-            type="button"
-            class="btn btn-success"
-            (click)="fnShowGrepOptions('QA')"
-          >
-            QA
-          </button>
+        <div class="row col-xl-9">
+          <div class="card-container col-xs-3 col-md-3">
+            <button
+              type="button"
+              class="btn btn-info"
+              (click)="fnShowGrepOptions('DEV')"
+            >
+              DEV
+            </button>
+          </div>
+          <div class="card-container col-xs-3 col-md-3 ">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="fnShowGrepOptions('QA')"
+            >
+              QA
+            </button>
+          </div>
+          <div class=" card-container col-xs-3 col-md-3">
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="fnShowGrepOptions('TRAINING')"
+            >
+              Training
+            </button>
+          </div>
+          <div class="card-container col-xs-3 col-md-3">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="fnShowGrepOptions('PROD')"
+            >
+              Prod
+            </button>
+          </div>
         </div>
-        <div class="col-xs-3 col-md-3">
-          <button
-            type="button"
-            class="btn btn-warning"
-            (click)="fnShowGrepOptions('TRAINING')"
-          >
-            Training
-          </button>
-        </div>
-        <div class="col-xs-3 col-md-3">
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="fnShowGrepOptions('PROD')"
-          >
-            Prod
-          </button>
-        </div>
-
+ 
         <input type="hidden" #selection />
         <!-- this.showInstanceOptions activates below div -->
         <div
-          class="card-container form-group row"
+          class="card-container row"
           *ngIf="this.showInstanceOptions == true"
         >
-          <!-- <p style="font-size: small; ">Choose instance for quick search</p> -->
+          <p style="font-size: small; "></p>
+          <div
+            class="card card-small btn-info "
+            tabindex="0"
+            (click)="fnShowStringTextArea('')"
+          >
+            <span>All</span>
+          </div>
           <div
             class="card card-small btn-info "
             tabindex="0"
@@ -128,7 +145,7 @@
             </div>
           </div>
         </div>
-<!-- div for search string -->
+        <!-- div for search string -->
         <div class="row col-xl-12 ">
           <div
             class="col-xl-10 "
@@ -155,7 +172,7 @@
               class="form-control"
               type="text"
               id="userId"
-              placeholder="Enter your UserId for unix login"
+              placeholder="Place holder for uid, leave blank"
               formControlName="userId"
               required
             />
@@ -165,13 +182,12 @@
             *ngIf="showPwd == true"
             (click)="fnShowSearchButton()"
             (keyup)="fnShowSearchButton()"
-            
           >
             <input
               class="form-control"
               type="password"
               id="password"
-              placeholder="Enter your Password"
+              placeholder="Place holder for pwd, leave blank"
               formControlName="password"
               required
             />
@@ -193,11 +209,12 @@
 
         <div class="row col-xl-10 mt-4 " *ngIf="showSearchResults == true">
           <div class="col-xl-10">
-            {{ searchResultMap }}
-            {{ searchResults }}
+            <pre style="white-space:pre-wrap;">{{ searchResultMap }}</pre>
+            <p class="search-result">{{ searchResults }}</p>
           </div>
         </div>
-      </div><!-- div row ends here-->
+      </div>
+      <!-- div row ends here-->
     </div>
   </div>
 </form>

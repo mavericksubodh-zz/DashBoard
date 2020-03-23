@@ -62,11 +62,13 @@ export class SearchComponent implements OnInit {
     this.showUsrId = false;
     this.showPwd = false;
     this.showSearchButton = false;
+    this.showSearchResults = false;
     console.log('this.showInstanceOptions is ' + this.showInstanceOptions);
   }
   fnShowCustomSearch() {
     this.showCustom = true;
     this.showUsrId = false;
+    this.showSearchResults = false;
   }
 
   fnShowStringTextArea(type) {
@@ -79,6 +81,7 @@ export class SearchComponent implements OnInit {
     this.showPwd = false;
     this.showCustom = false;
     this.showSearchButton = false;
+    this.showSearchResults = false;
     console.log('this.showSearchButton is ' + this.showSearchButton);
   }
   fnShowUserId() {
@@ -87,16 +90,19 @@ export class SearchComponent implements OnInit {
     this.showCustom = false;
     this.showSearchButton = false;
     console.log('this.showSearchButton is ' + this.showSearchButton);
+    this.showSearchResults = false;
 
   }
   fnShowPassword() {
     this.showPwd = true;
     this.showSearchButton = false;
+    this.showSearchResults = false;
   }
 
   fnShowSearchButton() {
     console.log('turning showSearchButton true');
     this.showSearchButton = true;
+    this.showSearchResults = false;
   }
 
 // Using this function in html
@@ -115,6 +121,7 @@ export class SearchComponent implements OnInit {
           console.log(data + ' data returned by the service');
           console.log('Printing data from search.component in next line ');
           console.log(this.searchResultMap);
+          console.log('Tried string manipulation ' + this.searchResults);
           this.searchResultMap = JSON.parse(JSON.stringify(data));
           console.log('Showing searchResultMap' + this.searchResultMap);
         }
