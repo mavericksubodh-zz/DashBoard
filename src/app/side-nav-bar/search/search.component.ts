@@ -63,7 +63,7 @@ export class SearchComponent implements OnInit {
     this.showPwd = false;
     this.showSearchButton = false;
     this.showSearchResults = false;
-    console.log('this.showInstanceOptions is ' + this.showInstanceOptions);
+    console.log('this.showInstanceOptions is ' + this.showInstanceOptions +  ':' + this.showSearchResults) ;
   }
   fnShowCustomSearch() {
     this.showCustom = true;
@@ -72,7 +72,7 @@ export class SearchComponent implements OnInit {
   }
 
   fnShowStringTextArea(type) {
-    console.log('Reached fnShowStringTextArea : ' + type);
+    console.log('Reached fnShowStringTextArea : ' + type +  ':' + this.showSearchResults);
     this.searchForm.patchValue({
       instance: type
     });
@@ -82,14 +82,14 @@ export class SearchComponent implements OnInit {
     this.showCustom = false;
     this.showSearchButton = false;
     this.showSearchResults = false;
-    console.log('this.showSearchButton is ' + this.showSearchButton);
+    console.log('this.showSearchButton is ' + this.showSearchButton +  ':' + this.showSearchResults);
   }
   fnShowUserId() {
     this.showUsrId = true;
     this.showPwd = true;
     this.showCustom = false;
     this.showSearchButton = false;
-    console.log('this.showSearchButton is ' + this.showSearchButton);
+    console.log('this.showSearchButton is ' + this.showSearchButton +  ':' + this.showSearchResults);
     this.showSearchResults = false;
 
   }
@@ -103,11 +103,16 @@ export class SearchComponent implements OnInit {
     console.log('turning showSearchButton true');
     this.showSearchButton = true;
     this.showSearchResults = false;
+    console.log('value in fnShowSearchButton() of  this.showSearchResults is ' + this.showSearchResults);
+    this.searchResultMap = '';
+    this.searchResults = '';
   }
 
-// Using this function in html
+  // Using this function in html
   async fnCallSearchService(env, cluster, searchString) {
+    this.showSearchResults = false;
     console.warn(this.searchForm.value);
+    this.searchResultMap = '';
     console.warn(this.searchForm.get('environment').value + '-env ' + this.searchForm.get('credentials.userId').value);
     console.log('calling fnSendGetRequest.');
     env = this.searchForm.get('environment').value;
@@ -125,7 +130,7 @@ export class SearchComponent implements OnInit {
           this.searchResultMap = JSON.parse(JSON.stringify(data));
           console.log('Showing searchResultMap' + this.searchResultMap);
         }
-    );
+      );
     console.log('Call to fnSendGetRequest done');
     this.showSearchResults = true;
   }

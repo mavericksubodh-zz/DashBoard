@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://whdq9733:20201/util/logSearchLists/?environment='
+  // baseUrl: 'http://whdq9733:20201/util/logSearchMap/?environment='
 };
 
 /*

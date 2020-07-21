@@ -206,6 +206,7 @@
 
         <div class="row col-xl-10 mt-4 " *ngIf="showSearchResults == true">
           <div class="col-xl-10">
+            <pre style="white-space:pre-wrap;">Search result for {{ this.searchForm.get('grepString').value }} are below</pre>
             <pre style="white-space:pre-wrap;">{{ searchResultMap }}</pre>
             <p class="search-result">{{ searchResults }}</p>
           </div>
